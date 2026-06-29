@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --black: #000000;
+  --brand-blue: #09198d;
+  --brand-orange: #e85002;
+  --brand-orange-dark: #c10801;
+  --brand-orange-light: #f16001;
+  --brand-sand: #d9c3ab;
+  --dark-gray: #333333;
+  --gray: #646464;
+  --white: #f9f9f9;
+  --brand-gradient: linear-gradient(90deg, #000000 0%, #c10801 33.333%, #f16001 66.667%, #d9c3ab 100%);
+  --background: var(--black);
+  --foreground: var(--white);
+  --foreground-soft: rgba(249, 249, 249, 0.76);
+  --muted: var(--brand-sand);
+  --muted-soft: rgba(217, 195, 171, 0.72);
+  --surface-page: var(--background);
+  --surface-panel: rgba(0, 0, 0, 0.9);
+  --surface-panel-strong: rgba(0, 0, 0, 0.96);
+  --surface-panel-soft: rgba(51, 51, 51, 0.56);
+  --surface-header: linear-gradient(180deg, rgba(51, 51, 51, 0.86), rgba(0, 0, 0, 0.84));
+  --surface-row: rgba(0, 0, 0, 0.34);
+  --surface-row-alt: rgba(51, 51, 51, 0.24);
+  --surface-row-hover: rgba(51, 51, 51, 0.42);
+  --surface-input: rgba(0, 0, 0, 0.76);
+  --surface-input-hover: rgba(51, 51, 51, 0.38);
+  --surface-mobile-row: rgba(51, 51, 51, 0.54);
+  --border: rgba(100, 100, 100, 0.5);
+  --border-strong: rgba(217, 195, 171, 0.28);
+  --border-subtle: rgba(100, 100, 100, 0.34);
+  --border-mobile-row: rgba(100, 100, 100, 0.36);
+  --focus-inner: rgba(249, 249, 249, 0.2);
+  --focus-outer: rgba(232, 80, 2, 0.48);
+  --shadow-panel: 0 18px 44px rgba(0, 0, 0, 0.42);
+  --shadow-raised: 0 24px 76px rgba(0, 0, 0, 0.54);
+  --button-primary-border: rgba(249, 249, 249, 0.12);
+  --button-primary-shadow: inset 0 1px 0 rgba(249, 249, 249, 0.18), 0 10px 24px rgba(232, 80, 2, 0.16);
+  --button-primary-shadow-hover: inset 0 1px 0 rgba(249, 249, 249, 0.24), 0 12px 28px rgba(232, 80, 2, 0.22);
+  --button-secondary-border: rgba(249, 249, 249, 0.1);
+  --button-secondary-shadow-hover: inset 0 0 0 1px var(--border-strong), 0 10px 24px rgba(9, 25, 141, 0.24);
+  --button-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.64);
+  --primary: var(--brand-orange);
+  --primary-contrast: var(--white);
+  --secondary: var(--brand-blue);
+  --danger: var(--brand-orange-light);
+  --danger-bg: rgba(241, 96, 1, 0.14);
+  --danger-border: rgba(241, 96, 1, 0.42);
+  --success: var(--brand-sand);
+  --success-bg: rgba(217, 195, 171, 0.14);
+  --success-border: rgba(217, 195, 171, 0.34);
+  --warning: var(--brand-orange-light);
+  --warning-bg: rgba(232, 80, 2, 0.14);
+  --loading-bg: rgba(232, 80, 2, 0.12);
+  --loading-border: rgba(232, 80, 2, 0.34);
+  --badge-neutral-bg: rgba(100, 100, 100, 0.24);
+  --status-processing-bg: rgba(9, 25, 141, 0.42);
+  --shimmer: linear-gradient(90deg, transparent, rgba(249, 249, 249, 0.34), transparent);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  background: var(--black);
+}
+
+body {
+  background: var(--surface-page);
+  color: var(--foreground);
+  font-family:
+    var(--font-arabic),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  letter-spacing: 0;
+}
+
+body::before {
+  background: var(--brand-gradient);
+  content: "";
+  height: 3px;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 20;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-inner), 0 0 0 5px var(--focus-outer);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(232, 80, 2, 0.28);
+  color: var(--foreground);
+}
+
+.soft-panel {
+  background: linear-gradient(180deg, rgba(51, 51, 51, 0.2) 0%, rgba(0, 0, 0, 0.78) 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-panel);
+}
+
+.brand-rule {
+  background: var(--brand-gradient);
+}
