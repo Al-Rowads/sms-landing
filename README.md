@@ -34,21 +34,17 @@ Compose mounts the host `./data` directory at `/app/data`. This directory is
 excluded from the Docker build context so private names and phone numbers are
 never embedded in the image.
 
-- `data/mapping.csv` is optional and uses the `code,name,phone` header.
-- `data/results.csv` is created automatically with the
-  `name,phone,code,timestamp` header when the first result is saved.
+- `data/mapping.csv` uses the `code,name,phone` header.
+- `data/results.csv` uses the `name,phone,code,timestamp` header.
 
-Do not pre-create an empty `results.csv`; either let the app create it or include
-the expected header. Back up the entire `data` directory to preserve mappings
-and results.
+At container startup, missing or empty CSV files are initialized with their
+expected headers. Populated files are preserved. The container also assigns the
+mounted directory and these two files to the standard Node user with UID and GID
+`1000`, then starts the application as that non-root user.
 
-The image runs as the standard Node user with UID and GID `1000`. On Linux, make
-sure that account can write the mounted directory and any existing
-`results.csv`. For example:
-
-```sh
-sudo chown -R 1000:1000 data
-```
+Because this updates ownership on the bind mount, the two CSV files and the
+`data` directory appear on the host as owned by UID and GID `1000`. Back up the
+entire directory to preserve mappings and results.
 
 ## Run without Compose
 
