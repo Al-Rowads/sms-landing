@@ -116,7 +116,7 @@ export default async function Home({
             </p>
           </div>
 
-          <InterestedButton code={code} />
+          <InterestedButton code={code} hasMappedLead={lead !== null} />
         </div>
       </section>
     </main>

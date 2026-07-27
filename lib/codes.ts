@@ -15,6 +15,8 @@ export type ResultEntry = {
   timestamp: string;
 };
 
+export type ResultDeduplicationKey = "code" | "phone";
+
 export const CODE_CHARSET = "abcdefghjkmnpqrstuvwxyz23456789";
 export const CODE_LENGTH = 4;
 export const DEFAULT_SOURCE_CSV = "/Users/admin/Downloads/Untitled spreadsheet - Sheet1 (1).csv";
@@ -207,7 +209,10 @@ export async function lookupByCode(code: string): Promise<MappingEntry | null> {
   return entries.get(normalizedCode) ?? null;
 }
 
-export async function appendResult(entry: ResultEntry): Promise<{ appended: boolean }> {
+export async function appendResult(
+  entry: ResultEntry,
+  options: { deduplicateBy: ResultDeduplicationKey }
+): Promise<{ appended: boolean }> {
   const normalizedEntry: ResultEntry = {
     name: normalizeName(entry.name),
     phone: normalizePhone(entry.phone),
@@ -217,16 +222,20 @@ export async function appendResult(entry: ResultEntry): Promise<{ appended: bool
 
   const existingText = await ensureResultsFile();
   const existingRows = parseCsv(existingText);
+  const headerRow = existingRows[0] ?? [];
+  const deduplicationIndex = findHeaderIndex(headerRow, options.deduplicateBy);
+  const deduplicationValue =
+    options.deduplicateBy === "code" ? normalizedEntry.code : normalizedEntry.phone;
 
-  if (normalizedEntry.code) {
-    const headerRow = existingRows[0] ?? [];
-    const codeIndex = findHeaderIndex(headerRow, "code");
+  if (deduplicationValue && deduplicationIndex >= 0) {
+    for (const row of existingRows.slice(1)) {
+      const existingValue =
+        options.deduplicateBy === "code"
+          ? normalizeCode(row[deduplicationIndex] ?? "")
+          : normalizePhone(row[deduplicationIndex] ?? "");
 
-    if (codeIndex >= 0) {
-      for (const row of existingRows.slice(1)) {
-        if (normalizeCode(row[codeIndex] ?? "") === normalizedEntry.code) {
-          return { appended: false };
-        }
+      if (existingValue === deduplicationValue) {
+        return { appended: false };
       }
     }
   }

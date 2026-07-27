@@ -1,0 +1,14 @@
+.git
+.gitignore
+.next
+node_modules
+data
+
+.DS_Store
+*.log
+*.pem
+
+.env
+.env.*
+
+README.md
