@@ -59,7 +59,7 @@ export default async function Home({
           </div>
 
           <div
-            className="relative aspect-[16/9] overflow-hidden rounded-[8px] border border-[var(--border-strong)]"
+            className="relative min-h-[260px] overflow-hidden rounded-[8px] border border-[var(--border-strong)] sm:aspect-[16/9]"
             style={{ boxShadow: "var(--shadow-raised)" }}
           >
             <div
@@ -78,7 +78,7 @@ export default async function Home({
                   "radial-gradient(circle at top right, rgba(249, 249, 249, 0.18) 0%, transparent 24%), radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.58) 0%, transparent 56%)",
               }}
             />
-            <div className="relative flex h-full flex-col justify-between p-5 text-right sm:p-7">
+            <div className="relative flex h-full flex-col justify-between gap-6 p-5 text-right sm:gap-0 sm:p-7">
               <div className="flex items-center justify-between gap-3">
                 <span className="rounded-[999px] border border-[var(--button-primary-border)] bg-black/30 px-3 py-1 text-xs font-bold text-[var(--muted)]">
                   AL-ROWADs
