@@ -39,16 +39,13 @@ export default async function Home({
             priority
             className="h-auto w-36 object-contain drop-shadow-[0_18px_48px_rgba(0,0,0,0.72)] sm:w-44"
           />
-        </div>
+          </div>
 
-        <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 text-center">
-          <div className="space-y-4">
-            <p className="text-sm font-bold tracking-[0.08em] text-[var(--muted)] uppercase">
-              AL-ROWADs
-            </p>
-            <p className="text-2xl font-extrabold text-[var(--white)] sm:text-3xl">
-              {greeting}
-            </p>
+          <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 text-center">
+            <div className="space-y-4">
+              <p className="text-2xl font-extrabold text-[var(--white)] sm:text-3xl">
+                {greeting}
+              </p>
             <div className="brand-rule mx-auto h-px w-28" />
             <h1 className="text-4xl leading-tight font-black text-[var(--white)] sm:text-5xl">
               نشاركك تفاصيل دورة الذكاء العاطفي
@@ -79,10 +76,7 @@ export default async function Home({
               }}
             />
             <div className="relative flex h-full flex-col justify-between gap-6 p-5 text-right sm:gap-0 sm:p-7">
-              <div className="flex items-center justify-between gap-3">
-                <span className="rounded-[999px] border border-[var(--button-primary-border)] bg-black/30 px-3 py-1 text-xs font-bold text-[var(--muted)]">
-                  AL-ROWADs
-                </span>
+              <div className="flex items-center justify-end">
                 <span className="text-xs font-semibold text-[var(--foreground-soft)]">
                   المادة البصرية للدورة
                 </span>
