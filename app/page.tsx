@@ -32,12 +32,12 @@ export default async function Home({
       <section className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-3xl flex-col justify-center gap-8">
         <div className="flex justify-center">
           <Image
-            src="/al-rowads-logo.png"
+            src="/al-rowads-white-logo.png"
             alt="AL-ROWADs"
-            width={140}
-            height={140}
+            width={2790}
+            height={2599}
             priority
-            className="h-24 w-24 object-contain drop-shadow-[0_18px_48px_rgba(0,0,0,0.72)] sm:h-28 sm:w-28"
+            className="h-auto w-36 object-contain drop-shadow-[0_18px_48px_rgba(0,0,0,0.72)] sm:w-44"
           />
         </div>
 
