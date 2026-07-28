@@ -120,7 +120,6 @@ export default async function Home({
               نبذة موجزة
             </p>
             <div className="mt-3 space-y-4 text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
-              <p>ماذا ستتعلم في دورة؟</p>
               <ol className="list-inside list-decimal space-y-3">
                 <li>
                   <span className="font-bold text-[var(--white)]">
