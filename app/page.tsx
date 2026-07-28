@@ -51,7 +51,7 @@ export default async function Home({
             </p>
             <div className="brand-rule mx-auto h-px w-28" />
             <h1 className="text-4xl leading-tight font-black text-[var(--white)] sm:text-5xl">
-              ادارة المبيعات ٤
+              نشاركك تفاصيل دورة الذكاء العاطفي
             </h1>
             <p className="mx-auto max-w-xl text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
               برنامج تدريبي متكامل لتطوير أنظمة البيع ورفع أداء فرق المبيعات
@@ -90,15 +90,25 @@ export default async function Home({
 
               <div className="space-y-3">
                 <div className="brand-rule h-px w-20" />
-                <div className="space-y-2">
-                  <p className="text-2xl font-black text-[var(--white)] sm:text-3xl">
-                    ادارة المبيعات ٤
+                <div className="max-w-xl space-y-3 text-sm leading-7 text-[var(--foreground-soft)] sm:text-base">
+                  <p>
+                    لكثير من المشكلات في العلاقات والعمل والتواصل اليومي قد تكون
+                    مرتبطة بصعوبة فهم المشاعر وإدارة الانفعالات.
                   </p>
-                  <p className="max-w-md text-sm leading-7 text-[var(--foreground-soft)] sm:text-base">
-                    دورة متخصصة لأصحاب الشركات والمكاتب والمصانع، ومدراء
-                    المبيعات، وروّاد الأعمال، وكل من يسعى إلى تطوير منظومة
-                    المبيعات داخل مؤسسته، وبناء فريق أكثر كفاءة واحترافية،
-                    وتحقيق نتائج أفضل من خلال أساليب عملية قابلة للتطبيق.
+                  <p>وهذا يؤدي إلى:</p>
+                  <ul className="list-inside list-disc space-y-1">
+                    <li>التوتر المستمر وردود الأفعال المتسرعة</li>
+                    <li>صعوبة التعامل مع الضغوط والمواقف الصعبة</li>
+                    <li>
+                      سوء الفهم وفجوات التواصل في العلاقات الشخصية والمهنية
+                    </li>
+                    <li>التأثر السريع بالمشاعر السلبية والضغوط اليومية</li>
+                    <li>اتخاذ قرارات تحت تأثير الغضب أو الانفعال</li>
+                  </ul>
+                  <p>
+                    ولهذا صممت دورة الذكاء العاطفي لتساعدك على فهم مشاعرك
+                    وإدارتها بشكل أفضل، وفهم الآخرين والتواصل معهم بوعي وحكمة،
+                    لبناء علاقات أكثر توازنًا ونجاحًا.
                   </p>
                 </div>
               </div>
@@ -109,11 +119,32 @@ export default async function Home({
             <p className="text-sm font-bold text-[var(--muted)] sm:text-base">
               نبذة موجزة
             </p>
-            <p className="mt-3 text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
-              في Sales Coaching 4 ستتعلم كيف تبني نظام مبيعات متكامل يساعدك على
-              تنظيم الفريق، تحسين الأداء، إدارة العملاء بفعالية، تطوير آليات
-              البيع، ورفع النتائج من خلال عمل واضح، قابل للقياس، وقابل للتطوير.
-            </p>
+            <div className="mt-3 space-y-4 text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
+              <p>ماذا ستتعلم في دورة؟</p>
+              <ol className="list-inside list-decimal space-y-3">
+                <li>
+                  <span className="font-bold text-[var(--white)]">
+                    مقدمة في الذكاء العاطفي:
+                  </span>
+                  <br />
+                  مفهومه وأهميته في الحياة والعمل
+                </li>
+                <li>
+                  <span className="font-bold text-[var(--white)]">
+                    الوعي بالذات:
+                  </span>
+                  <br />
+                  كيف تفهم مشاعرك ومحفزاتها
+                </li>
+                <li>
+                  <span className="font-bold text-[var(--white)]">
+                    إدارة الذات:
+                  </span>
+                  <br />
+                  تقنيات التعامل مع الانفعالات والضغوط اليومية
+                </li>
+              </ol>
+            </div>
           </div>
 
           <InterestedButton code={code} hasMappedLead={lead !== null} />
