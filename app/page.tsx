@@ -56,7 +56,34 @@ export default async function Home({
           </div>
 
           <div
-            className="relative min-h-[260px] overflow-hidden rounded-[8px] border border-[var(--border-strong)] sm:aspect-[16/9]"
+            className="relative overflow-hidden rounded-[18px] p-px sm:rounded-[24px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(217, 195, 171, 0.72) 0%, rgba(232, 80, 2, 0.88) 48%, rgba(193, 8, 1, 0.68) 72%, rgba(51, 51, 51, 0.9) 100%)",
+              boxShadow:
+                "0 24px 72px rgba(0, 0, 0, 0.58), 0 0 40px rgba(232, 80, 2, 0.1)",
+            }}
+          >
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-10 top-0 h-px bg-[rgba(249,249,249,0.54)]"
+            />
+            <div className="rounded-[17px] bg-black p-1.5 sm:rounded-[23px] sm:p-2">
+              <div className="relative aspect-video overflow-hidden rounded-[13px] bg-[#050505] sm:rounded-[18px]">
+                <iframe
+                  src="https://drive.google.com/file/d/1F7x_drrNMNK6b5t15JOr4Xi0DKrXiBKN/preview"
+                  title="الفيديو التعريفي لدورة الذكاء العاطفي"
+                  loading="lazy"
+                  allow="encrypted-media; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="relative min-h-[260px] overflow-hidden rounded-[8px] border border-[var(--border-strong)]"
             style={{ boxShadow: "var(--shadow-raised)" }}
           >
             <div
