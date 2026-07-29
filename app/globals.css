@@ -79,6 +79,7 @@ body {
   background: var(--surface-page);
   color: var(--foreground);
   font-family:
+    var(--font-ray),
     var(--font-arabic),
     ui-sans-serif,
     system-ui,
@@ -97,7 +98,7 @@ h5,
 h6,
 .title-font {
   font-family:
-    var(--font-ray-bold),
+    var(--font-ray),
     var(--font-arabic),
     ui-sans-serif,
     system-ui,

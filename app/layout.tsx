@@ -11,10 +11,20 @@ const cairo = Cairo({
   display: "swap"
 });
 
-const rayBold = localFont({
-  src: "./fonts/ray-bold.ttf",
-  weight: "700",
-  variable: "--font-ray-bold",
+const ray = localFont({
+  src: [
+    {
+      path: "./fonts/ray-medium.ttf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ray-bold.ttf",
+      weight: "700",
+      style: "normal"
+    }
+  ],
+  variable: "--font-ray",
   display: "swap"
 });
 
@@ -26,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${cairo.variable} ${rayBold.variable}`}>{children}</body>
+      <body className={`${cairo.variable} ${ray.variable}`}>{children}</body>
     </html>
   );
 }
