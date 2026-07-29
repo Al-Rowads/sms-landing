@@ -89,6 +89,22 @@ body {
   letter-spacing: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title-font {
+  font-family:
+    var(--font-ray-bold),
+    var(--font-arabic),
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+  font-weight: 700;
+}
+
 body::before {
   background: var(--brand-gradient);
   content: "";

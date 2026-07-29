@@ -79,7 +79,7 @@ export default function InterestedButton({
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[var(--success-border)] bg-[var(--success-bg)] text-xl font-black text-[var(--muted)]">
           ✓
         </div>
-        <p className="mt-4 text-xl font-extrabold text-[var(--white)]">شكراً لك</p>
+        <p className="title-font mt-4 text-xl text-[var(--white)]">شكراً لك</p>
         <p className="mt-2 text-sm leading-7 text-[var(--foreground-soft)] sm:text-base">
           تم تسجيل اهتمامك بنجاح، وسيتابع معك فريق AL-ROWADs قريباً.
         </p>
@@ -94,7 +94,7 @@ export default function InterestedButton({
         className="soft-panel flex flex-col gap-4 rounded-[8px] px-5 py-6 text-right sm:px-7"
       >
         <div>
-          <p className="text-xl font-extrabold text-[var(--white)]">
+          <p className="title-font text-xl text-[var(--white)]">
             سجّل بياناتك
           </p>
           <p className="mt-2 text-sm leading-7 text-[var(--foreground-soft)]">

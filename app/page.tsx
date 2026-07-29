@@ -43,11 +43,11 @@ export default async function Home({
 
           <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 text-center">
             <div className="space-y-4">
-              <p className="text-2xl font-extrabold text-[var(--white)] sm:text-3xl">
+              <p className="title-font text-2xl text-[var(--white)] sm:text-3xl">
                 {greeting}
               </p>
             <div className="brand-rule mx-auto h-px w-28" />
-            <h1 className="text-4xl leading-tight font-black text-[var(--white)] sm:text-5xl">
+            <h1 className="text-4xl leading-tight text-[var(--white)] sm:text-5xl">
               نشاركك تفاصيل دورة الذكاء العاطفي
             </h1>
             <p className="mx-auto max-w-xl text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
@@ -104,7 +104,7 @@ export default async function Home({
             />
             <div className="relative flex h-full flex-col justify-between gap-6 p-5 text-right sm:gap-0 sm:p-7">
               <div className="flex items-center justify-end">
-                <span className="text-xs font-semibold text-[var(--foreground-soft)]">
+                <span className="title-font text-xs text-[var(--foreground-soft)]">
                   المادة البصرية للدورة
                 </span>
               </div>
@@ -137,27 +137,27 @@ export default async function Home({
           </div>
 
           <div className="soft-panel rounded-[8px] px-5 py-6 text-right sm:px-7 sm:py-7">
-            <p className="text-sm font-bold text-[var(--muted)] sm:text-base">
+            <p className="title-font text-sm text-[var(--muted)] sm:text-base">
               نبذة موجزة
             </p>
             <div className="mt-3 space-y-4 text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
               <ol className="list-inside list-decimal space-y-3">
                 <li>
-                  <span className="font-bold text-[var(--white)]">
+                  <span className="title-font text-[var(--white)]">
                     مقدمة في الذكاء العاطفي:
                   </span>
                   <br />
                   مفهومه وأهميته في الحياة والعمل
                 </li>
                 <li>
-                  <span className="font-bold text-[var(--white)]">
+                  <span className="title-font text-[var(--white)]">
                     الوعي بالذات:
                   </span>
                   <br />
                   كيف تفهم مشاعرك ومحفزاتها
                 </li>
                 <li>
-                  <span className="font-bold text-[var(--white)]">
+                  <span className="title-font text-[var(--white)]">
                     إدارة الذات:
                   </span>
                   <br />
