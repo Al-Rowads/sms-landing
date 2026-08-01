@@ -56,7 +56,7 @@ export default async function Home({
           </div>
 
           <div
-            className="relative overflow-hidden rounded-[18px] p-px sm:rounded-[24px]"
+            className="relative w-full overflow-hidden rounded-[18px] p-px sm:rounded-[24px]"
             style={{
               background:
                 "linear-gradient(135deg, rgba(217, 195, 171, 0.72) 0%, rgba(232, 80, 2, 0.88) 48%, rgba(193, 8, 1, 0.68) 72%, rgba(51, 51, 51, 0.9) 100%)",
@@ -69,12 +69,12 @@ export default async function Home({
               className="pointer-events-none absolute inset-x-10 top-0 h-px bg-[rgba(249,249,249,0.54)]"
             />
             <div className="rounded-[17px] bg-black p-1.5 sm:rounded-[23px] sm:p-2">
-              <div className="relative aspect-video overflow-hidden rounded-[13px] bg-[#050505] sm:rounded-[18px]">
+              <div className="relative aspect-video w-full overflow-hidden rounded-[13px] bg-[#050505] sm:rounded-[18px]">
                 <iframe
-                  src="https://drive.google.com/file/d/1F7x_drrNMNK6b5t15JOr4Xi0DKrXiBKN/preview"
+                  src="https://player.vimeo.com/video/1214858010?autoplay=1&muted=0&controls=1&playsinline=1&fullscreen=1&pip=1"
                   title="الفيديو التعريفي لدورة الذكاء العاطفي"
-                  loading="lazy"
-                  allow="encrypted-media; fullscreen; picture-in-picture"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   allowFullScreen
                   className="absolute inset-0 h-full w-full border-0"
                 />
