@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Script from "next/script";
 import InterestedButton from "./interested-button";
 import { extractFirstName, lookupByCode, normalizeCode } from "@/lib/codes";
 
@@ -39,16 +40,16 @@ export default async function Home({
             priority
             className="h-auto w-36 object-contain drop-shadow-[0_18px_48px_rgba(0,0,0,0.72)] sm:w-44"
           />
-          </div>
+        </div>
 
-          <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 text-center">
-            <div className="space-y-4">
-              <p className="title-font text-2xl text-[var(--white)] sm:text-3xl">
-                {greeting}
-              </p>
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 text-center">
+          <div className="space-y-4">
+            <p className="title-font text-2xl text-[var(--white)] sm:text-3xl">
+              {greeting}
+            </p>
             <div className="brand-rule mx-auto h-px w-28" />
             <h1 className="text-4xl leading-tight text-[var(--white)] sm:text-5xl">
-              نشاركك تفاصيل دورة الذكاء العاطفي
+              الذكاء العاطفي
             </h1>
             <p className="mx-auto max-w-xl text-base leading-8 text-[var(--foreground-soft)] sm:text-lg">
               برنامج تدريبي متكامل لتطوير أنظمة البيع ورفع أداء فرق المبيعات
@@ -71,16 +72,22 @@ export default async function Home({
             <div className="rounded-[17px] bg-black p-1.5 sm:rounded-[23px] sm:p-2">
               <div className="relative aspect-video w-full overflow-hidden rounded-[13px] bg-[#050505] sm:rounded-[18px]">
                 <iframe
-                  src="https://player.vimeo.com/video/1214858010?autoplay=1&muted=0&controls=1&playsinline=1&fullscreen=1&pip=1"
-                  title="الفيديو التعريفي لدورة الذكاء العاطفي"
-                  referrerPolicy="strict-origin-when-cross-origin"
+                  src="https://player.vimeo.com/video/1214858010?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1"
+                  title="EI.mp4"
+                  loading="lazy"
+                  frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
                   className="absolute inset-0 h-full w-full border-0"
                 />
               </div>
             </div>
           </div>
+          <Script
+            src="https://player.vimeo.com/api/player.js"
+            strategy="afterInteractive"
+          />
 
           <div
             className="relative min-h-[260px] overflow-hidden rounded-[8px] border border-[var(--border-strong)]"
