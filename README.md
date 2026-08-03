@@ -28,6 +28,12 @@ docker compose logs -f app
 docker compose down
 ```
 
+## Export interested leads
+
+Open <http://localhost:3000/export> to download `leads.csv`. The export contains
+only the `phone,name` columns from submitted interest records. The route is
+public and exposes names and phone numbers to anyone who can access the URL.
+
 ## Data persistence
 
 Compose mounts the host `./data` directory at `/app/data`. This directory is

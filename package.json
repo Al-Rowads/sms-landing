@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "tsx --test lib/codes.test.ts",
     "generate:codes": "tsx scripts/generate-codes.ts"
   },
   "dependencies": {

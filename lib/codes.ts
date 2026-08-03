@@ -176,6 +176,42 @@ export function findHeaderIndex(headers: string[], targetHeader: string): number
   return headers.findIndex((header) => header.trim() === normalizedTarget);
 }
 
+export function buildLeadExportCsv(resultsText: string): string {
+  const rows = parseCsv(resultsText);
+  const exportHeader = serializeCsvRow(["phone", "name"]);
+
+  if (rows.length === 0) {
+    return `\ufeff${exportHeader}\n`;
+  }
+
+  const [headers, ...records] = rows;
+  const nameIndex = findHeaderIndex(headers, "name");
+  const phoneIndex = findHeaderIndex(headers, "phone");
+
+  if (nameIndex < 0 || phoneIndex < 0) {
+    throw new Error("data/results.csv must include name and phone headers.");
+  }
+
+  const exportRows = records.map((record) =>
+    serializeCsvRow([record[phoneIndex] ?? "", record[nameIndex] ?? ""])
+  );
+
+  return `\ufeff${[exportHeader, ...exportRows].join("\n")}\n`;
+}
+
+export async function loadLeadExportCsv(): Promise<string> {
+  try {
+    const resultsText = await fs.readFile(RESULTS_FILE_PATH, "utf8");
+    return buildLeadExportCsv(resultsText);
+  } catch (error) {
+    if (isNodeError(error) && error.code === "ENOENT") {
+      return buildLeadExportCsv("");
+    }
+
+    throw error;
+  }
+}
+
 export function generateCodeForPhone(phone: string, usedCodes: Set<string>): string {
   const codeBase = BigInt(CODE_CHARSET.length);
 
