@@ -70,9 +70,9 @@ export default async function Home({
               className="pointer-events-none absolute inset-x-10 top-0 h-px bg-[rgba(249,249,249,0.54)]"
             />
             <div className="rounded-[17px] bg-black p-1.5 sm:rounded-[23px] sm:p-2">
-              <div className="relative aspect-video w-full overflow-hidden rounded-[13px] bg-[#050505] sm:rounded-[18px]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[13px] bg-[#050505] sm:rounded-[18px]">
                 <iframe
-                  src="https://player.vimeo.com/video/1214858010?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1"
+                  src="https://player.vimeo.com/video/1215155777?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1"
                   title="EI.mp4"
                   loading="lazy"
                   frameBorder="0"
