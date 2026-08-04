@@ -29,8 +29,16 @@ const ray = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AL-ROWADs | صفحة الدورة",
-  description: "صفحة هبوط عربية لتسجيل الاهتمام بالدورة من AL-ROWADs."
+  title: "دورة الذكاء العاطفي | أكاديمية الرواد",
+  description:
+    "برنامج تدريبي حضوري مع د. أحمد الكاتب لفهم المشاعر وإدارتها، وتحسين العلاقات واتخاذ قرارات أكثر وعياً.",
+  openGraph: {
+    title: "دورة الذكاء العاطفي | أكاديمية الرواد",
+    description:
+      "افهم نفسك ومشاعرك وابنِ علاقات أفضل من خلال برنامج تدريبي عملي في بغداد.",
+    locale: "ar_IQ",
+    type: "website"
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
