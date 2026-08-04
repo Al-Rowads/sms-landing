@@ -203,7 +203,7 @@ export default async function Home({
                 </div>
                 <div className="video-frame">
                   <iframe
-                    src="https://www.youtube-nocookie.com/embed/E_dehUGp_Yg?autoplay=1&playsinline=1&controls=1&rel=0"
+                    src="https://www.youtube-nocookie.com/embed/5C0fwxSNAY8?autoplay=1&playsinline=1&controls=1&rel=0"
                     title="الفيديو التعريفي لدورة الذكاء العاطفي"
                     loading="eager"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
