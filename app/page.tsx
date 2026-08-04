@@ -10,9 +10,9 @@ type SearchParams = Promise<{
 
 const courseHighlights = [
   { label: "المكان", value: "بغداد – نادي اليرموك" },
+  { label: "المدة", value: "3 محاضرات | 18 ساعة" },
   { label: "المواعيد", value: "29/8، 12/9، 26/9/2026" },
-  { label: "الوقت", value: "3:00 – 9:00 مساءً" },
-  { label: "المدة", value: "3 محاضرات | 18 ساعة" }
+  { label: "الوقت", value: "3:00 – 9:00 مساءً" }
 ];
 
 const outcomes = [
@@ -41,9 +41,9 @@ const outcomes = [
 const courseDetails = [
   { label: "المدرب", value: "د. أحمد الكاتب" },
   { label: "المكان", value: "بغداد – نادي اليرموك الترفيهي" },
+  { label: "المدة", value: "3 محاضرات | 18 ساعة" },
   { label: "المواعيد", value: "29/8، 12/9، 26/9/2026" },
   { label: "الوقت", value: "3:00 – 9:00 مساءً" },
-  { label: "المدة", value: "3 محاضرات | 18 ساعة" },
   { label: "الشهادة", value: "شهادة من أكاديمية الرواد" }
 ];
 
