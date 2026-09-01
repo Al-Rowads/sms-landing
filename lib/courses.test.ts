@@ -2,15 +2,18 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
   emotionalIntelligenceCourse,
+  salesCoaching3Course,
   salesCoachingCourse,
   salesEngineeringCourse
 } from "./courses";
+import { isCourseId } from "./course-ids";
 
 describe("course landing configurations", () => {
   it("uses unique course and video identifiers", () => {
     const courses = [
       emotionalIntelligenceCourse,
       salesEngineeringCourse,
+      salesCoaching3Course,
       salesCoachingCourse
     ];
 
@@ -19,6 +22,7 @@ describe("course landing configurations", () => {
       new Set(courses.map((course) => course.videoId)).size,
       courses.length
     );
+    assert.ok(courses.every((course) => isCourseId(course.id)));
   });
 
   it("keeps the existing root course packages unchanged", () => {
@@ -56,5 +60,20 @@ describe("course landing configurations", () => {
       ]
     );
     assert.doesNotMatch(JSON.stringify(salesCoachingCourse), /حضوري/);
+  });
+
+  it("uses the supplied video and online-only Sales Coaching 3 package", () => {
+    assert.equal(salesCoaching3Course.videoId, "aPaSQEB_Kg4");
+    assert.deepEqual(
+      salesCoaching3Course.packages,
+      [
+        {
+          title: "أونلاين",
+          price: "1,490$",
+          benefits: ["الوصول أونلاين إلى محتوى الدورة"]
+        }
+      ]
+    );
+    assert.doesNotMatch(JSON.stringify(salesCoaching3Course), /حضوري/);
   });
 });

@@ -1,6 +1,7 @@
 export const COURSE_IDS = [
   "emotional-intelligence",
   "sales-engineering",
+  "sales-coaching-3",
   "sales-coaching-4"
 ] as const;
 
