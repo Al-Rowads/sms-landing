@@ -13,9 +13,10 @@ directory.
 
 All routes share one visual template while keeping course copy, metadata,
 YouTube video, WhatsApp message, and packages in typed course configuration.
-Sales Engineering prices (`497$`, `695$`, `1,361$`) and Sales Coaching 4 prices
-(`1,600$`, `1,800$`, `2,300$`) were verified against their product pages on
-2026-09-01 and are intentionally stored locally rather than scraped at runtime.
+Sales Engineering uses rounded-up selling prices (`500$`, `700$`, `1,400$`)
+based on its official variants. Sales Coaching 4 prices (`1,600$`, `1,800$`,
+`2,300$`) were verified against its product page on 2026-09-01. Prices are
+intentionally stored locally rather than scraped at runtime.
 
 ## Run with Docker Compose
 

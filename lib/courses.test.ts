@@ -33,9 +33,9 @@ describe("course landing configurations", () => {
     assert.deepEqual(
       salesEngineeringCourse.packages.map(({ title, price }) => [title, price]),
       [
-        ["مسجّلة", "497$"],
-        ["حضورية + مسجّلة", "695$"],
-        ["الباقة الخاصة (VIP)", "1,361$"]
+        ["مسجّلة", "500$"],
+        ["حضورية + مسجّلة", "700$"],
+        ["الباقة الخاصة (VIP)", "1,400$"]
       ]
     );
   });

@@ -239,17 +239,17 @@ export const salesEngineeringCourse: CourseLandingConfig = {
   packages: [
     {
       title: "مسجّلة",
-      price: "497$",
+      price: "500$",
       benefits: ["النسخة المسجّلة من الدورة"]
     },
     {
       title: "حضورية + مسجّلة",
-      price: "695$",
+      price: "700$",
       benefits: ["الحضور الحضوري", "النسخة المسجّلة"]
     },
     {
       title: "الباقة الخاصة (VIP)",
-      price: "1,361$",
+      price: "1,400$",
       benefits: []
     }
   ],
