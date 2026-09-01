@@ -1,6 +1,7 @@
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { isCourseId, type CourseId } from "./course-ids";
 
 export type MappingEntry = {
   code: string;
@@ -12,6 +13,7 @@ export type ResultEntry = {
   name: string;
   phone: string;
   code: string;
+  course: CourseId;
   timestamp: string;
 };
 
@@ -24,10 +26,13 @@ export const DEFAULT_NAME_COLUMN = "الاسم";
 export const DEFAULT_PHONE_COLUMN = "رقم الهاتف";
 export const MAPPING_FILE_PATH = path.join(process.cwd(), "data", "mapping.csv");
 export const RESULTS_FILE_PATH = path.join(process.cwd(), "data", "results.csv");
+export const DEFAULT_COURSE_ID: CourseId = "emotional-intelligence";
+export const RESULTS_HEADERS = ["name", "phone", "code", "course", "timestamp"] as const;
 
 const BIDI_CONTROL_PATTERN = /[\u200e\u200f\u202a-\u202e\u2066-\u2069]/gu;
 
 let cachedMapping: { mtimeMs: number; entries: Map<string, MappingEntry> } | null = null;
+let resultsFilePromise: Promise<void> | null = null;
 
 export function normalizeCode(rawCode: string | undefined | null): string {
   return (rawCode ?? "").trim().toLowerCase().slice(0, 64);
@@ -176,9 +181,82 @@ export function findHeaderIndex(headers: string[], targetHeader: string): number
   return headers.findIndex((header) => header.trim() === normalizedTarget);
 }
 
+export function migrateResultsCsv(text: string): {
+  text: string;
+  migrated: boolean;
+} {
+  const rows = parseCsv(text);
+
+  if (rows.length === 0) {
+    return {
+      text: `${serializeCsvRow(RESULTS_HEADERS)}\n`,
+      migrated: true
+    };
+  }
+
+  const [headers, ...records] = rows;
+  const normalizedHeaders = headers.map((header) => header.trim());
+  const supportedHeaders = new Set<string>(RESULTS_HEADERS);
+
+  if (
+    normalizedHeaders.some((header) => !supportedHeaders.has(header)) ||
+    new Set(normalizedHeaders).size !== normalizedHeaders.length
+  ) {
+    throw new Error(
+      "data/results.csv may only include the name, phone, code, course, and timestamp headers."
+    );
+  }
+
+  const nameIndex = findHeaderIndex(headers, "name");
+  const phoneIndex = findHeaderIndex(headers, "phone");
+  const codeIndex = findHeaderIndex(headers, "code");
+  const courseIndex = findHeaderIndex(headers, "course");
+  const timestampIndex = findHeaderIndex(headers, "timestamp");
+
+  if (nameIndex < 0 || phoneIndex < 0 || codeIndex < 0 || timestampIndex < 0) {
+    throw new Error(
+      "data/results.csv must include name, phone, code, and timestamp headers."
+    );
+  }
+
+  let migrated =
+    normalizedHeaders.length !== RESULTS_HEADERS.length ||
+    RESULTS_HEADERS.some((header, index) => normalizedHeaders[index] !== header);
+
+  const normalizedRows = records.map((record) => {
+    const rawCourse = courseIndex >= 0 ? (record[courseIndex] ?? "").trim() : "";
+    const course = rawCourse || DEFAULT_COURSE_ID;
+
+    if (!isCourseId(course)) {
+      throw new Error(`data/results.csv contains an unknown course: ${course}.`);
+    }
+
+    if (!rawCourse) {
+      migrated = true;
+    }
+
+    return serializeCsvRow([
+      record[nameIndex] ?? "",
+      record[phoneIndex] ?? "",
+      record[codeIndex] ?? "",
+      course,
+      record[timestampIndex] ?? ""
+    ]);
+  });
+
+  if (!migrated) {
+    return { text, migrated: false };
+  }
+
+  return {
+    text: `${[serializeCsvRow(RESULTS_HEADERS), ...normalizedRows].join("\n")}\n`,
+    migrated: true
+  };
+}
+
 export function buildLeadExportCsv(resultsText: string): string {
   const rows = parseCsv(resultsText);
-  const exportHeader = serializeCsvRow(["phone", "name"]);
+  const exportHeader = serializeCsvRow(["course", "phone", "name"]);
 
   if (rows.length === 0) {
     return `\ufeff${exportHeader}\n`;
@@ -187,29 +265,31 @@ export function buildLeadExportCsv(resultsText: string): string {
   const [headers, ...records] = rows;
   const nameIndex = findHeaderIndex(headers, "name");
   const phoneIndex = findHeaderIndex(headers, "phone");
+  const courseIndex = findHeaderIndex(headers, "course");
 
   if (nameIndex < 0 || phoneIndex < 0) {
     throw new Error("data/results.csv must include name and phone headers.");
   }
 
-  const exportRows = records.map((record) =>
-    serializeCsvRow([record[phoneIndex] ?? "", record[nameIndex] ?? ""])
-  );
+  const exportRows = records.map((record) => {
+    const course =
+      courseIndex >= 0 && record[courseIndex]
+        ? record[courseIndex]
+        : DEFAULT_COURSE_ID;
+
+    return serializeCsvRow([
+      course,
+      record[phoneIndex] ?? "",
+      record[nameIndex] ?? ""
+    ]);
+  });
 
   return `\ufeff${[exportHeader, ...exportRows].join("\n")}\n`;
 }
 
 export async function loadLeadExportCsv(): Promise<string> {
-  try {
-    const resultsText = await fs.readFile(RESULTS_FILE_PATH, "utf8");
-    return buildLeadExportCsv(resultsText);
-  } catch (error) {
-    if (isNodeError(error) && error.code === "ENOENT") {
-      return buildLeadExportCsv("");
-    }
-
-    throw error;
-  }
+  const resultsText = await ensureResultsFile();
+  return buildLeadExportCsv(resultsText);
 }
 
 export function generateCodeForPhone(phone: string, usedCodes: Set<string>): string {
@@ -253,38 +333,53 @@ export async function appendResult(
     name: normalizeName(entry.name),
     phone: normalizePhone(entry.phone),
     code: normalizeCode(entry.code),
+    course: entry.course,
     timestamp: entry.timestamp.trim()
   };
 
   const existingText = await ensureResultsFile();
   const existingRows = parseCsv(existingText);
-  const headerRow = existingRows[0] ?? [];
-  const deduplicationIndex = findHeaderIndex(headerRow, options.deduplicateBy);
-  const deduplicationValue =
-    options.deduplicateBy === "code" ? normalizedEntry.code : normalizedEntry.phone;
 
-  if (deduplicationValue && deduplicationIndex >= 0) {
-    for (const row of existingRows.slice(1)) {
-      const existingValue =
-        options.deduplicateBy === "code"
-          ? normalizeCode(row[deduplicationIndex] ?? "")
-          : normalizePhone(row[deduplicationIndex] ?? "");
-
-      if (existingValue === deduplicationValue) {
-        return { appended: false };
-      }
-    }
+  if (hasDuplicateResult(existingRows, normalizedEntry, options.deduplicateBy)) {
+    return { appended: false };
   }
 
   const line = `${serializeCsvRow([
     normalizedEntry.name,
     normalizedEntry.phone,
     normalizedEntry.code,
+    normalizedEntry.course,
     normalizedEntry.timestamp
   ])}\n`;
 
   await fs.appendFile(RESULTS_FILE_PATH, line, "utf8");
   return { appended: true };
+}
+
+export function hasDuplicateResult(
+  rows: string[][],
+  entry: Pick<ResultEntry, "code" | "course" | "phone">,
+  deduplicateBy: ResultDeduplicationKey
+): boolean {
+  const headerRow = rows[0] ?? [];
+  const deduplicationIndex = findHeaderIndex(headerRow, deduplicateBy);
+  const courseIndex = findHeaderIndex(headerRow, "course");
+  const deduplicationValue =
+    deduplicateBy === "code" ? normalizeCode(entry.code) : normalizePhone(entry.phone);
+
+  if (!deduplicationValue || deduplicationIndex < 0 || courseIndex < 0) {
+    return false;
+  }
+
+  return rows.slice(1).some((row) => {
+    const existingCourse = (row[courseIndex] ?? "").trim();
+    const existingValue =
+      deduplicateBy === "code"
+        ? normalizeCode(row[deduplicationIndex] ?? "")
+        : normalizePhone(row[deduplicationIndex] ?? "");
+
+    return existingCourse === entry.course && existingValue === deduplicationValue;
+  });
 }
 
 async function loadMapping(): Promise<Map<string, MappingEntry>> {
@@ -341,19 +436,50 @@ async function loadMapping(): Promise<Map<string, MappingEntry>> {
 }
 
 async function ensureResultsFile(): Promise<string> {
+  resultsFilePromise ??= ensureResultsFileOnce().catch((error) => {
+    resultsFilePromise = null;
+    throw error;
+  });
+
+  await resultsFilePromise;
+  return fs.readFile(RESULTS_FILE_PATH, "utf8");
+}
+
+async function ensureResultsFileOnce(): Promise<void> {
+  let existingText: string;
+
   try {
-    return await fs.readFile(RESULTS_FILE_PATH, "utf8");
+    existingText = await fs.readFile(RESULTS_FILE_PATH, "utf8");
   } catch (error) {
     if (!isNodeError(error) || error.code !== "ENOENT") {
       throw error;
     }
+
+    existingText = "";
   }
 
   await fs.mkdir(path.dirname(RESULTS_FILE_PATH), { recursive: true });
+  const migratedResults = migrateResultsCsv(existingText);
 
-  const header = `${serializeCsvRow(["name", "phone", "code", "timestamp"])}\n`;
-  await fs.writeFile(RESULTS_FILE_PATH, header, "utf8");
-  return header;
+  if (!migratedResults.migrated) {
+    return;
+  }
+
+  const temporaryPath = path.join(
+    path.dirname(RESULTS_FILE_PATH),
+    `.results-${process.pid}-${randomUUID()}.tmp`
+  );
+
+  try {
+    await fs.writeFile(temporaryPath, migratedResults.text, {
+      encoding: "utf8",
+      mode: 0o644
+    });
+    await fs.rename(temporaryPath, RESULTS_FILE_PATH);
+  } catch (error) {
+    await fs.rm(temporaryPath, { force: true });
+    throw error;
+  }
 }
 
 function isNodeError(error: unknown): error is NodeJS.ErrnoException {

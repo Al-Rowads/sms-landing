@@ -787,6 +787,10 @@ img {
   gap: 16px;
 }
 
+.packages-grid-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .package-card {
   position: relative;
   display: flex;
@@ -873,6 +877,7 @@ img {
 
 .package-card > a {
   width: 100%;
+  margin-top: auto;
 }
 
 .faq-section {
@@ -1004,6 +1009,10 @@ img {
   font-family: var(--font-arabic), sans-serif;
   font-size: 12px;
   font-weight: 700;
+}
+
+.register-meta-item {
+  display: contents;
 }
 
 .register-action {

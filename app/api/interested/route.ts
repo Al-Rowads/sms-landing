@@ -1,16 +1,19 @@
 import { NextResponse } from "next/server";
 import {
   appendResult,
+  DEFAULT_COURSE_ID,
   lookupByCode,
   normalizeCode,
   normalizeName,
   normalizePhone
 } from "@/lib/codes";
+import { isCourseId } from "@/lib/course-ids";
 
 export const runtime = "nodejs";
 
 type InterestedRequest = {
   code?: unknown;
+  course?: unknown;
   name?: unknown;
   phone?: unknown;
 };
@@ -28,6 +31,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "The code field must be a string." }, { status: 400 });
   }
 
+  if (body.course !== undefined && typeof body.course !== "string") {
+    return NextResponse.json(
+      { error: "The course field must be a string." },
+      { status: 400 }
+    );
+  }
+
   if (body.name !== undefined && typeof body.name !== "string") {
     return NextResponse.json({ error: "The name field must be a string." }, { status: 400 });
   }
@@ -37,6 +47,13 @@ export async function POST(request: Request) {
   }
 
   const code = normalizeCode(body.code);
+  const course =
+    typeof body.course === "string" ? body.course.trim() : DEFAULT_COURSE_ID;
+
+  if (!isCourseId(course)) {
+    return NextResponse.json({ error: "Unknown course." }, { status: 400 });
+  }
+
   const lead = code ? await lookupByCode(code) : null;
   const name = lead?.name ?? normalizeName(body.name);
   const phone = lead?.phone ?? normalizePhone(body.phone);
@@ -64,6 +81,7 @@ export async function POST(request: Request) {
       name,
       phone,
       code,
+      course,
       timestamp: new Date().toISOString()
     },
     { deduplicateBy: lead ? "code" : "phone" }
@@ -72,6 +90,7 @@ export async function POST(request: Request) {
   return NextResponse.json({
     ok: true,
     recorded: result.appended,
-    code
+    code,
+    course
   });
 }

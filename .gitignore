@@ -23,3 +23,4 @@ npm-debug.log*
 # generated data (server-side, may contain PII)
 /data/mapping.csv
 /data/results.csv
+/data/visitors.sqlite*

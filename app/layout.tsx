@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
@@ -27,19 +26,6 @@ const ray = localFont({
   variable: "--font-ray",
   display: "swap"
 });
-
-export const metadata: Metadata = {
-  title: "دورة الذكاء العاطفي | أكاديمية الرواد",
-  description:
-    "برنامج تدريبي حضوري مع د. أحمد الكاتب لفهم المشاعر وإدارتها، وتحسين العلاقات واتخاذ قرارات أكثر وعياً.",
-  openGraph: {
-    title: "دورة الذكاء العاطفي | أكاديمية الرواد",
-    description:
-      "افهم نفسك ومشاعرك وابنِ علاقات أفضل من خلال برنامج تدريبي عملي في بغداد.",
-    locale: "ar_IQ",
-    type: "website"
-  }
-};
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (

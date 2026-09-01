@@ -1,9 +1,11 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
+import type { CourseId } from "@/lib/course-ids";
 
 type InterestedButtonProps = {
   code: string;
+  course: CourseId;
   hasMappedLead: boolean;
 };
 
@@ -11,12 +13,14 @@ type SubmissionState = "idle" | "submitting" | "success" | "error";
 
 type InterestedPayload = {
   code: string;
+  course: CourseId;
   name?: string;
   phone?: string;
 };
 
 export default function InterestedButton({
   code,
+  course,
   hasMappedLead
 }: InterestedButtonProps) {
   const [state, setState] = useState<SubmissionState>("idle");
@@ -50,7 +54,7 @@ export default function InterestedButton({
 
   function handleInterestClick() {
     if (hasMappedLead) {
-      void submitInterest({ code });
+      void submitInterest({ code, course });
       return;
     }
 
@@ -65,6 +69,7 @@ export default function InterestedButton({
 
     void submitInterest({
       code,
+      course,
       name: String(formData.get("name") ?? ""),
       phone: String(formData.get("phone") ?? "")
     });
