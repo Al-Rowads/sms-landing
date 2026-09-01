@@ -194,7 +194,7 @@ export const salesEngineeringCourse: CourseLandingConfig = {
   highlights: [
     { label: "النسخة", value: "نسخة 2026 المحدّثة" },
     { label: "المدة", value: "20 ساعة" },
-    { label: "الصيغة", value: "حضورية ومسجّلة" },
+    { label: "الصيغة", value: "مسجّلة" },
     { label: "المدرب", value: "د. أحمد الكاتب" }
   ],
   outcomes: [
@@ -221,7 +221,7 @@ export const salesEngineeringCourse: CourseLandingConfig = {
     { label: "المدرب", value: "د. أحمد الكاتب" },
     { label: "النسخة", value: "نسخة 2026 المحدّثة" },
     { label: "المدة", value: "20 ساعة" },
-    { label: "الصيغة", value: "حضورية ومسجّلة" },
+    { label: "الصيغة", value: "مسجّلة" },
     { label: "المنهج", value: "عملي وتطبيقي" },
     { label: "الشهادة", value: "شهادة إتمام من أكاديمية الرواد" }
   ],
@@ -241,16 +241,6 @@ export const salesEngineeringCourse: CourseLandingConfig = {
       title: "مسجّلة",
       price: "500$",
       benefits: ["النسخة المسجّلة من الدورة"]
-    },
-    {
-      title: "حضورية + مسجّلة",
-      price: "700$",
-      benefits: ["الحضور الحضوري", "النسخة المسجّلة"]
-    },
-    {
-      title: "الباقة الخاصة (VIP)",
-      price: "1,400$",
-      benefits: []
     }
   ],
   faqs: [
@@ -316,7 +306,7 @@ export const salesCoachingCourse: CourseLandingConfig = {
   videoId: "GN4_UVtF-WQ",
   videoTitle: "الفيديو التعريفي لبرنامج إدارة المبيعات 4",
   highlights: [
-    { label: "المحاضرات", value: "5 محاضرات حضورية" },
+    { label: "المحاضرات", value: "5 محاضرات أونلاين" },
     { label: "المدة", value: "أكثر من 30 ساعة عملية" },
     { label: "أداة البرنامج", value: "System Book" },
     { label: "التطبيق", value: "متابعة بين المحاضرات" }
@@ -343,7 +333,7 @@ export const salesCoachingCourse: CourseLandingConfig = {
     "أربع نتائج أساسية تساعدك على تنظيم المبيعات والفريق وتحسين النتائج داخل مشروعك.",
   details: [
     { label: "المدرب", value: "د. أحمد الكاتب" },
-    { label: "المحاضرات", value: "5 محاضرات حضورية" },
+    { label: "المحاضرات", value: "5 محاضرات أونلاين" },
     { label: "المدة", value: "أكثر من 30 ساعة تدريبية عملية" },
     { label: "الكتاب", value: "System Book خاص بالبرنامج" },
     { label: "المتابعة", value: "متابعة تطبيقية بين المحاضرات" },
@@ -364,19 +354,9 @@ export const salesCoachingCourse: CourseLandingConfig = {
     "ثلاثة أنظمة مترابطة للمبيعات والموظفين والحملات، مدعومة بأدوات ومتابعة عملية داخل المشروع.",
   packages: [
     {
-      title: "حضوري",
-      price: "1,600$",
-      benefits: ["الحضور الحضوري للبرنامج"]
-    },
-    {
-      title: "حضوري + أونلاين",
+      title: "أونلاين",
       price: "1,800$",
-      benefits: ["الحضور الحضوري", "الوصول أونلاين"]
-    },
-    {
-      title: "الباقة الكاملة",
-      price: "2,300$",
-      benefits: []
+      benefits: ["الوصول أونلاين للبرنامج"]
     }
   ],
   faqs: [

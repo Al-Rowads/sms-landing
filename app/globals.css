@@ -791,6 +791,11 @@ img {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.packages-grid-single {
+  grid-template-columns: minmax(280px, 420px);
+  justify-content: center;
+}
+
 .package-card {
   position: relative;
   display: flex;
@@ -1246,6 +1251,10 @@ img {
   .outcomes-grid,
   .packages-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .packages-grid-single {
+    grid-template-columns: minmax(280px, 420px);
   }
 
   .highlight-item:nth-child(2) {

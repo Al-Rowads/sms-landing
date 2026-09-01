@@ -28,27 +28,33 @@ describe("course landing configurations", () => {
     );
   });
 
-  it("uses the verified Sales Engineering video and prices", () => {
+  it("uses the online-only Sales Engineering package", () => {
     assert.equal(salesEngineeringCourse.videoId, "xBXgw_lOXjc");
     assert.deepEqual(
-      salesEngineeringCourse.packages.map(({ title, price }) => [title, price]),
+      salesEngineeringCourse.packages,
       [
-        ["مسجّلة", "500$"],
-        ["حضورية + مسجّلة", "700$"],
-        ["الباقة الخاصة (VIP)", "1,400$"]
+        {
+          title: "مسجّلة",
+          price: "500$",
+          benefits: ["النسخة المسجّلة من الدورة"]
+        }
       ]
     );
+    assert.doesNotMatch(JSON.stringify(salesEngineeringCourse), /حضوري/);
   });
 
-  it("uses the supplied Sales Coaching video and verified prices", () => {
+  it("uses the online-only Sales Coaching package", () => {
     assert.equal(salesCoachingCourse.videoId, "GN4_UVtF-WQ");
     assert.deepEqual(
-      salesCoachingCourse.packages.map(({ title, price }) => [title, price]),
+      salesCoachingCourse.packages,
       [
-        ["حضوري", "1,600$"],
-        ["حضوري + أونلاين", "1,800$"],
-        ["الباقة الكاملة", "2,300$"]
+        {
+          title: "أونلاين",
+          price: "1,800$",
+          benefits: ["الوصول أونلاين للبرنامج"]
+        }
       ]
     );
+    assert.doesNotMatch(JSON.stringify(salesCoachingCourse), /حضوري/);
   });
 });

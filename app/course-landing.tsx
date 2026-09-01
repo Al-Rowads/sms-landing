@@ -48,7 +48,11 @@ export default async function CourseLanding({
   const greeting = firstName ? `مرحباً ${firstName}` : "مرحباً بك";
   const whatsappMessage = encodeURIComponent(course.whatsappMessage);
   const packageGridClass =
-    course.packages.length === 3 ? "packages-grid packages-grid-three" : "packages-grid";
+    course.packages.length === 1
+      ? "packages-grid packages-grid-single"
+      : course.packages.length === 3
+        ? "packages-grid packages-grid-three"
+        : "packages-grid";
 
   return (
     <div className="site-shell">
