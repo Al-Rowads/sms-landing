@@ -15,8 +15,8 @@ directory.
 All routes share one visual template while keeping course copy, metadata,
 YouTube video, WhatsApp message, and packages in typed course configuration.
 Sales Engineering offers its recorded course for `500$`. Sales Coaching 3
-offers its online course for `1,490$`, and Sales Coaching 4 offers its online
-course for `1,800$`. Prices are intentionally stored locally rather than
+offers its online course for `1,100$`, and Sales Coaching 4 offers its online
+course for `1,600$`. Prices are intentionally stored locally rather than
 scraped at runtime.
 
 ## Run with Docker Compose

@@ -49,31 +49,25 @@ describe("course landing configurations", () => {
 
   it("uses the online-only Sales Coaching package", () => {
     assert.equal(salesCoachingCourse.videoId, "GN4_UVtF-WQ");
-    assert.deepEqual(
-      salesCoachingCourse.packages,
-      [
-        {
-          title: "أونلاين",
-          price: "1,800$",
-          benefits: ["الوصول أونلاين للبرنامج"]
-        }
-      ]
-    );
+    assert.deepEqual(salesCoachingCourse.packages, [
+      {
+        title: "أونلاين",
+        price: "1,600$",
+        benefits: ["الوصول أونلاين للبرنامج"],
+      },
+    ]);
     assert.doesNotMatch(JSON.stringify(salesCoachingCourse), /حضوري/);
   });
 
   it("uses the supplied video and online-only Sales Coaching 3 package", () => {
     assert.equal(salesCoaching3Course.videoId, "aPaSQEB_Kg4");
-    assert.deepEqual(
-      salesCoaching3Course.packages,
-      [
-        {
-          title: "أونلاين",
-          price: "1,490$",
-          benefits: ["الوصول أونلاين إلى محتوى الدورة"]
-        }
-      ]
-    );
+    assert.deepEqual(salesCoaching3Course.packages, [
+      {
+        title: "أونلاين",
+        price: "1,100$",
+        benefits: ["الوصول أونلاين إلى محتوى الدورة"],
+      },
+    ]);
     assert.doesNotMatch(JSON.stringify(salesCoaching3Course), /حضوري/);
   });
 });

@@ -58,7 +58,11 @@ export default async function CourseLanding({
     <div className="site-shell">
       <header className="site-header">
         <div className="page-container header-content">
-          <a className="brand-lockup" href="#top" aria-label="أكاديمية الرواد - الرئيسية">
+          <a
+            className="brand-lockup"
+            href="#top"
+            aria-label="أكاديمية الرواد - الرئيسية"
+          >
             <Image
               src="/al-rowads-white-logo.png"
               alt="شعار أكاديمية الرواد"
@@ -112,7 +116,9 @@ export default async function CourseLanding({
               </div>
 
               <div className="hero-trust">
-                <span className="trust-mark" aria-hidden="true">✓</span>
+                <span className="trust-mark" aria-hidden="true">
+                  ✓
+                </span>
                 <span>{course.trustItems[0]}</span>
                 <i aria-hidden="true" />
                 <span>{course.trustItems[1]}</span>
@@ -139,7 +145,7 @@ export default async function CourseLanding({
                   />
                 </div>
                 <p className="video-caption">
-                  إذا لم يبدأ الفيديو تلقائياً، اضغط على زر التشغيل.
+                  في حال لم يبدأ الفيديو تلقائيا ، انقر على زر التشغيل
                 </p>
               </div>
             </div>
@@ -157,7 +163,10 @@ export default async function CourseLanding({
           </div>
         </section>
 
-        <section className="content-section outcomes-section" aria-labelledby="outcomes-title">
+        <section
+          className="content-section outcomes-section"
+          aria-labelledby="outcomes-title"
+        >
           <div className="page-container">
             <div className="section-heading">
               <p className="section-kicker">نتائج ملموسة</p>
@@ -179,7 +188,11 @@ export default async function CourseLanding({
           </div>
         </section>
 
-        <section className="content-section program-section" id="program" aria-labelledby="program-title">
+        <section
+          className="content-section program-section"
+          id="program"
+          aria-labelledby="program-title"
+        >
           <div className="page-container">
             <div className="section-heading section-heading-right">
               <p className="section-kicker">برنامج متكامل</p>
@@ -221,12 +234,19 @@ export default async function CourseLanding({
           </div>
         </section>
 
-        <section className="content-section packages-section" id="packages" aria-labelledby="packages-title">
+        <section
+          className="content-section packages-section"
+          id="packages"
+          aria-labelledby="packages-title"
+        >
           <div className="page-container">
             <div className="section-heading">
               <p className="section-kicker">خيارات مرنة</p>
               <h2 id="packages-title">اختر الباقة المناسبة</h2>
-              <p>اختر التجربة التي تناسب احتياجك، ثم سجّل اهتمامك ليتواصل معك الفريق.</p>
+              <p>
+                اختر الباقة التي تناسب احتياجك، ثم سجّل اهتمامك ليتواصل معك
+                الفريق.
+              </p>
             </div>
 
             <div className={packageGridClass}>
@@ -253,7 +273,11 @@ export default async function CourseLanding({
                     </ul>
                   ) : null}
                   <a
-                    className={coursePackage.featured ? "primary-button" : "package-button"}
+                    className={
+                      coursePackage.featured
+                        ? "primary-button"
+                        : "package-button"
+                    }
                     href="#register"
                   >
                     سجّل اهتمامك
@@ -264,12 +288,15 @@ export default async function CourseLanding({
           </div>
         </section>
 
-        <section className="content-section faq-section" aria-labelledby="faq-title">
+        <section
+          className="content-section faq-section"
+          aria-labelledby="faq-title"
+        >
           <div className="page-container faq-layout">
             <div className="section-heading section-heading-right faq-heading">
               <p className="section-kicker">لديك سؤال؟</p>
               <h2 id="faq-title">أسئلة شائعة</h2>
-              <p>إجابات سريعة عن أكثر ما يهمك قبل الانضمام إلى الدورة.</p>
+              <p>إجابات سريعة عن أهم تساؤلاتك قبل الانضمام إلى الدورة</p>
             </div>
 
             <div className="faq-list">
@@ -286,7 +313,11 @@ export default async function CourseLanding({
           </div>
         </section>
 
-        <section className="register-section" id="register" aria-labelledby="register-title">
+        <section
+          className="register-section"
+          id="register"
+          aria-labelledby="register-title"
+        >
           <div className="page-container">
             <div className="register-card">
               <div className="register-copy">
@@ -340,7 +371,9 @@ export default async function CourseLanding({
         rel="noreferrer"
         aria-label="التسجيل عبر واتساب"
       >
-        <span className="whatsapp-icon" aria-hidden="true">◔</span>
+        <span className="whatsapp-icon" aria-hidden="true">
+          ◔
+        </span>
         <span>التسجيل عبر واتساب</span>
       </a>
     </div>
